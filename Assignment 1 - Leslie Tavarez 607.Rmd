@@ -1,0 +1,47 @@
+---
+title: Loading Data into a Data Frame 
+author: Leslie Tavarez 
+date: 9/8/24
+---
+
+#Introduction: For this lab, I chose to work with data from a survey that asked americans how they like their steak cooked. The reseracher initital thoughts were that risk-takers would perfer a risker steak, or in other words, a rare done steak. The stats did not support this hypothesis. However, I think that maybe steak preference depends on a persons gender, ethnicity/race and age.
+
+
+
+
+#using original data file from github
+
+```{r}
+Steak_Preference <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/steak-survey/steak-risk-survey.csv")
+```
+
+
+
+
+
+#import data set from steak risk survey and change name to steak data
+```{r}
+library(readr)
+steakdata <- read_csv ("https://raw.githubusercontent.com/fivethirtyeight/data/master/steak-survey/steak-risk-survey.csv")
+View(steakdata)
+```
+
+
+
+#select columns in R
+```{r}
+library(dplyr)
+steakdata2 <- steakdata %>% select(`How do you like your steak prepared?`,Gender, Age, `Location (Census Region)`)
+View(steakdata2)
+```
+
+
+
+#creating a bar plot
+```{r}
+library(ggplot2)
+ggplot(steakdata2, aes(x = `How do you like your steak prepared?`)) +
+  geom_bar()
+```
+
+#Conclusion: As I learn more about R, how to make graphs, tidying up data and completing analysis, I'd like to see if gender, location, or age has any correlation with steak preferences. I'd like to remove data from those who answered "NA" and only examine the people that eat steak. I tried to do this using the filter function but I kept recieving an error message. I'd also like to make additional graphs to perform a graphical analysis of the data based on individual varaibles.
